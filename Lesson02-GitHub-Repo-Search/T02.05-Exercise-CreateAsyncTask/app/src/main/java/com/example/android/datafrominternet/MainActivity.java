@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // TODO (4) Create a new GithubQueryTask and call its execute method, passing in the url to query
+        new GithubQueryTask().execute(githubSearchUrl);
     }
 
     // TODO (1) Create a class called GithubQueryTask that extends AsyncTask<URL, Void, String>
@@ -72,13 +73,22 @@ public class MainActivity extends AppCompatActivity {
     // TODO (3) Override onPostExecute to display the results in the TextView
     public class GithubQueryTask extends AsyncTask<URL, Void, String> {
         @Override
-        protected void doInBackground() {
-
+        protected String doInBackground(URL... params) {
+            URL searchUrl = params[0];
+            String githubSearchResults = null;
+            try {
+                githubSearchResults = NetworkUtils.getResponseFromHttpUrl(searchUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return githubSearchResults;
         }
 
         @Override
-        protected void onPostExecute() {
-            
+        protected void onPostExecute(String githubSearchResults) {
+            if(githubSearchResults!=null && !githubSearchResults.equals("")) {
+                mSearchResultsTextView.setText(githubSearchResults);
+            }
         }
     }
 
