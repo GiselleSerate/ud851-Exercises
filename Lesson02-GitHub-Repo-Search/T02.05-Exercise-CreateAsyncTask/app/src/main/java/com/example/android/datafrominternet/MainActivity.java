@@ -26,6 +26,7 @@ import com.example.android.datafrominternet.utilities.NetworkUtils;
 
 import java.io.IOException;
 import java.net.URL;
+import android.os.AsyncTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,6 +70,17 @@ public class MainActivity extends AppCompatActivity {
     // TODO (1) Create a class called GithubQueryTask that extends AsyncTask<URL, Void, String>
     // TODO (2) Override the doInBackground method to perform the query. Return the results. (Hint: You've already written the code to perform the query)
     // TODO (3) Override onPostExecute to display the results in the TextView
+    public class GithubQueryTask extends AsyncTask<URL, Void, String> {
+        @Override
+        protected void doInBackground() {
+
+        }
+
+        @Override
+        protected void onPostExecute() {
+            
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
